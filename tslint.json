@@ -12,6 +12,9 @@
     "prettier": true,
     "interface-name": false,
     "react-anchor-blank-noopener": true,
-    "no-console": false
+    "no-console": false,
+    "member-access": false,
+    "jsx-no-lambda": false,
+    "object-literal-sort-keys": false
   }
 }
