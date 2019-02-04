@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
 import Input from '../Input';
 
 import { getResult } from '../../utils/helpers';
@@ -37,22 +39,40 @@ class Form extends Component<Props> {
     const { firstInput, secondInput } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <FormStyled onSubmit={this.handleSubmit}>
         <Input
           name="firstInput"
           value={firstInput}
           onChange={this.handleChange}
+          placeholder="This..."
         />
-        or
         <Input
           name="secondInput"
           value={secondInput}
           onChange={this.handleChange}
+          placeholder="Or that..."
         />
-        <button type="submit">Decide!</button>
-      </form>
+        <Button type="submit">Decide!</Button>
+      </FormStyled>
     );
   }
 }
 
 export default Form;
+
+const FormStyled = styled.form`
+  display: flex;
+  justify-content: space-between;
+  flex: 0 0 100%;
+  flex-wrap: wrap;
+`;
+
+const Button = styled.button`
+  background: linear-gradient(to right, #4a00e0, #8e2de2);
+  border: 0;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.5rem;
+  height: 5rem;
+  flex-basis: 100%;
+`;
