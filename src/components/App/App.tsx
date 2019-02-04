@@ -1,51 +1,70 @@
 import React, { Component } from 'react';
+import Modal from 'react-responsive-modal';
+import styled from 'styled-components';
 
 import LoadFonts from '../../fonts';
 import Form from '../Form';
 import Layout from '../Layout';
-import Result from '../Result';
 
 class App extends Component {
   state = {
-    result: '',
-    error: false
+    result: false,
+    error: false,
+    open: false
   };
 
   componentDidMount() {
     LoadFonts();
   }
 
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ open: false, result: false });
+  };
+
   updateResult = (result: string | boolean) => {
     // if result comes back false it means there was an error
-    // so set error to true and result to false
+    // so set error to true
     if (!result) {
       this.setState({
         error: true
       });
-
-      return;
+    } else {
+      // otherwise we're good! so update the result
+      this.setState({
+        result,
+        error: false
+      });
     }
 
-    // otherwise we're good! so update the result
-    this.setState({
-      result,
-      error: false
-    });
+    this.onOpenModal();
   };
 
   public render() {
-    const { error, result } = this.state;
+    const { error, open, result } = this.state;
 
     return (
       <Layout>
         <Form updateResult={this.updateResult} />
 
-        {/* TODO: Implement proper error message */}
-        {error && <p>Error!</p>}
-        {result && <Result result={result} />}
+        <Modal open={open} onClose={this.onCloseModal} showCloseIcon={false}>
+          {result && (
+            <h2>
+              You should pick <Span>{result}</Span>!
+            </h2>
+          )}
+          {error && <h2>Oops! Please enter two things to make a decision.</h2>}
+        </Modal>
       </Layout>
     );
   }
 }
 
 export default App;
+
+const Span = styled.span`
+  color: #8e2de2;
+`;
