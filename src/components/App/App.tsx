@@ -1,5 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+
 import Form from '../Form';
+import Layout from '../Layout';
 import Result from '../Result';
 
 class App extends Component {
@@ -30,13 +32,13 @@ class App extends Component {
     const { error, result } = this.state;
 
     return (
-      <Fragment>
+      <Layout>
         <Form updateResult={this.updateResult} />
 
         {/* TODO: Implement proper error message */}
         {error && <p>Error!</p>}
         {result && <Result result={result} />}
-      </Fragment>
+      </Layout>
     );
   }
 }
