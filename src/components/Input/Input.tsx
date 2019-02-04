@@ -1,9 +1,15 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 
-type Ref = HTMLInputElement;
+interface Props {
+  // If `type` is provided, should only be the following values
+  type?: 'submit' | 'button' | 'text';
+  name: string;
+  value: string;
+  onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+}
 
-export const Input = forwardRef<Ref>((props, ref) => (
-  <input type="text" ref={ref} />
-));
+const Input = ({ type, name, value, onChange }: Props) => (
+  <input name={name} type={type} value={value} onChange={onChange} />
+);
 
 export default Input;
