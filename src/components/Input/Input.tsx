@@ -55,6 +55,9 @@ const InputStyled = styled.input`
   padding: 2rem 1rem 1rem 1rem;
   width: 100%;
   transition: all 0.2s;
+  &:hover {
+    background: #e4e4e4;
+  }
   /* normal label size (when placeholder is there but hidden aka not focused) */
   :placeholder-shown + label {
     transform-origin: left bottom;
