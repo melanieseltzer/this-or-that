@@ -1,7 +1,7 @@
-import React, { Fragment, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
-import Header from '../Header';
+import Footer from '../Footer';
 
 interface Props {
   children: ReactNode;
@@ -10,8 +10,8 @@ interface Props {
 const Layout = (props: Props) => (
   <App>
     <GlobalStyle />
-    <Header />
     <main>{props.children}</main>
+    <Footer />
   </App>
 );
 
@@ -31,11 +31,14 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const App = styled.div`
-  max-width: 960px;
+  max-width: 768px;
   margin: 0 auto;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  margin: 0 20px;
+  @media (min-width: 808px) {
+    margin: 0 auto;
+  }
 `;

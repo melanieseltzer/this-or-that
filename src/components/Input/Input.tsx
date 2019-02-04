@@ -1,37 +1,82 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 
 interface Props {
   // If `type` is provided, should only be the following values
   type?: 'submit' | 'button' | 'text';
   name: string;
+  id: string;
   value: string;
   onChange: (e: React.FormEvent<HTMLInputElement>) => void;
-  placeholder: string;
+  placeholder?: string;
 }
 
-const Input = ({ type, name, value, onChange, placeholder }: Props) => (
-  <InputStyled
-    type={type}
-    name={name}
-    value={value}
-    onChange={onChange}
-    placeholder={placeholder}
-  />
+const Input = ({ type, name, id, value, onChange, placeholder }: Props) => (
+  <InputWrapper>
+    <InputStyled
+      type={type}
+      name={name}
+      id={id}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+    />
+    <Label htmlFor={id}>{id}</Label>
+  </InputWrapper>
 );
 
 export default Input;
 
+const InputWrapper = styled.div`
+  position: relative;
+  flex-basis: 100%;
+  @media (min-width: 768px) {
+    flex-basis: 49%;
+  }
+`;
+
+const Label = styled.label`
+  color: #8e2de2;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 1rem;
+  transition: all 0.2s;
+`;
+
 const InputStyled = styled.input`
   background: #f3f3f3;
   border: 0;
-  border-bottom: 3px solid #aaa;
-  flex-basis: 100%;
-  font-size: 2rem;
-  height: 4rem;
+  border-bottom: 3px solid #8e2de2;
+  font-size: 1.2rem;
+  height: 5rem;
   margin-bottom: 1.5rem;
-  padding: 1rem;
-  @media (min-width: 768px) {
-    flex-basis: 49%;
+  padding: 2rem 1rem 1rem 1rem;
+  width: 100%;
+  transition: all 0.2s;
+  /* normal label size (when placeholder is there but hidden aka not focused) */
+  :placeholder-shown + label {
+    transform-origin: left bottom;
+    transform: translate(0, 2.125rem) scale(1.5);
+  }
+  /* when not focused, hide the placeholder */
+  :placeholder-shown:not(:focus)::placeholder,
+  :placeholder-shown:not(:focus)::-webkit-input-placeholder {
+    opacity: 0;
+    transition: inherit;
+  }
+  /* show the placeholder only when input is focused */
+  :focus::placeholder,
+  :focus::-webkit-input-placeholder {
+    color: #757575;
+    opacity: 1;
+  }
+  /* shrink the label when focused and also when text has been entered */
+  :not(:placeholder-shown) + label,
+  :focus + label {
+    padding-top: 0.5rem;
+    transform: translate(0, 0) scale(1);
+    cursor: pointer;
   }
 `;

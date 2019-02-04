@@ -42,17 +42,19 @@ class Form extends Component<Props> {
       <FormStyled onSubmit={this.handleSubmit}>
         <Input
           name="firstInput"
+          id="This"
           value={firstInput}
           onChange={this.handleChange}
-          placeholder="This..."
+          placeholder="Pizza"
         />
         <Input
           name="secondInput"
+          id="Or That"
           value={secondInput}
           onChange={this.handleChange}
-          placeholder="Or that..."
+          placeholder="Hamburger"
         />
-        <Button type="submit">Decide!</Button>
+        <Button type="submit">Decide</Button>
       </FormStyled>
     );
   }
