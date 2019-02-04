@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import LoadFonts from '../../fonts';
 import Form from '../Form';
 import Layout from '../Layout';
 import Result from '../Result';
@@ -9,6 +10,10 @@ class App extends Component {
     result: '',
     error: false
   };
+
+  componentDidMount() {
+    LoadFonts();
+  }
 
   updateResult = (result: string | boolean) => {
     // if result comes back false it means there was an error
