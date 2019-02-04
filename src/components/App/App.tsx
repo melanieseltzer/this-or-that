@@ -1,8 +1,6 @@
-import React, { Component, createRef, Fragment } from 'react';
-import Input from '../Input';
+import React, { Component, Fragment } from 'react';
+import Form from '../Form';
 import Result from '../Result';
-
-import { getResult } from '../../utils/helpers';
 
 class App extends Component {
   state = {
@@ -10,37 +8,22 @@ class App extends Component {
     error: false
   };
 
-  // Track the inputs using ref
-  firstOption = createRef<HTMLInputElement>();
-  secondOption = createRef<HTMLInputElement>();
-
-  handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const firstOption = this.firstOption.current;
-    const secondOption = this.secondOption.current;
-
-    // Get around the `Object is possibly 'null'` compile error
-    // by checking with an if statement
-    if (firstOption && secondOption) {
-      // make a decision using each input value
-      const result = getResult(firstOption.value, secondOption.value);
-
-      // if result comes back false it means there was an error
-      // so bail early
-      if (!result) {
-        this.setState({
-          error: true
-        });
-
-        return;
-      }
-
+  updateResult = (result: string | boolean) => {
+    // if result comes back false it means there was an error
+    // so set error to true and result to false
+    if (!result) {
       this.setState({
-        result,
-        error: false
+        error: true
       });
+
+      return;
     }
+
+    // otherwise we're good! so update the result
+    this.setState({
+      result,
+      error: false
+    });
   };
 
   public render() {
@@ -48,12 +31,7 @@ class App extends Component {
 
     return (
       <Fragment>
-        <form onSubmit={this.handleSubmit}>
-          <Input ref={this.firstOption} />
-          or
-          <Input ref={this.secondOption} />
-          <button type="submit">Decide!</button>
-        </form>
+        <Form updateResult={this.updateResult} />
 
         {/* TODO: Implement proper error message */}
         {error && <p>Error!</p>}
