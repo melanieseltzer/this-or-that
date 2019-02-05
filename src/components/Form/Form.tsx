@@ -39,7 +39,7 @@ class Form extends Component<Props> {
     const { firstInput, secondInput } = this.state;
 
     return (
-      <FormStyled onSubmit={this.handleSubmit}>
+      <FormWrapper onSubmit={this.handleSubmit}>
         <Input
           name="firstInput"
           id="This"
@@ -55,14 +55,14 @@ class Form extends Component<Props> {
           placeholder="Hamburger"
         />
         <Button type="submit">Decide</Button>
-      </FormStyled>
+      </FormWrapper>
     );
   }
 }
 
 export default Form;
 
-const FormStyled = styled.form`
+const FormWrapper = styled.form`
   display: flex;
   justify-content: space-between;
   flex: 0 0 100%;
