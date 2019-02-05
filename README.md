@@ -1,4 +1,4 @@
-# 🔀 This or That
+# 🎉 This or That
 
 > Having trouble deciding between two options? This app can help!
 

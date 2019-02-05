@@ -7,6 +7,8 @@ import LoadFonts from '../../fonts';
 import Form from '../Form';
 import Layout from '../Layout';
 
+import { config } from '../../utils/config';
+
 class App extends Component {
   state = {
     result: false,
@@ -16,6 +18,7 @@ class App extends Component {
   };
 
   componentDidMount() {
+    // Loads fonts on mount so it's not render blocking
     LoadFonts();
   }
 
@@ -24,7 +27,11 @@ class App extends Component {
   };
 
   onCloseModal = () => {
-    this.setState({ open: false, result: false, confetti: false });
+    this.setState({
+      open: false,
+      result: false,
+      confetti: false
+    });
   };
 
   updateResult = (result: string | boolean) => {
@@ -36,7 +43,7 @@ class App extends Component {
         confetti: false
       });
     } else {
-      // otherwise we're good! so update the result
+      // otherwise we're good! so update the result and make it rain 🎉
       this.setState({
         result,
         error: false,
@@ -44,40 +51,31 @@ class App extends Component {
       });
     }
 
+    // launch the modal to house the result or the error message
     this.onOpenModal();
   };
 
   public render() {
     const { error, open, result, confetti } = this.state;
 
-    // Confetti config
-    const config = {
-      angle: 360,
-      spread: 360,
-      startVelocity: 45,
-      elementCount: 100,
-      dragFriction: 0.1,
-      duration: 3000,
-      delay: 0,
-      width: '15px',
-      height: '15px',
-      colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a']
-    };
-
     return (
       <Layout>
+        {/* forward the updater function to <Form> component */}
         <Form updateResult={this.updateResult} />
 
         <ConfettiWrapper>
+          {/* confetti status is maintained in state */}
           <Confetti active={confetti} config={config} />
         </ConfettiWrapper>
 
+        {/* modal will open for either an error or a result */}
         <Modal open={open} onClose={this.onCloseModal} showCloseIcon={false}>
           {result && (
             <h2>
               You should pick <Span>{result}</Span>!
             </h2>
           )}
+
           {error && <h2>Oops! Please enter two things to make a decision.</h2>}
         </Modal>
       </Layout>

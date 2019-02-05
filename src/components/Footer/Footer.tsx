@@ -2,9 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Footer = () => (
-  <FooterStyled>
+  <FooterWrapper>
     <p>
-      Made with ❤️ by{' '}
+      Made with{' '}
+      <span role="img" aria-label="heart">
+        ❤️
+      </span>{' '}
+      by{' '}
       <a
         href="https://github.com/melanieseltzer"
         target="_blank"
@@ -23,12 +27,12 @@ const Footer = () => (
     >
       Star
     </a>
-  </FooterStyled>
+  </FooterWrapper>
 );
 
 export default Footer;
 
-const FooterStyled = styled.footer`
+const FooterWrapper = styled.footer`
   margin-top: 3rem;
   text-align: center;
   font-size: 2rem;
