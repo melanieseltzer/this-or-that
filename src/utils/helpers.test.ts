@@ -12,6 +12,10 @@ describe('getResult function', () => {
     expect(getResult('pizza', 'pasta')).toBe('pasta');
   });
 
+  it('will return false if first argument is empty', () => {
+    expect(getResult('', 'pizza')).toBe(false);
+  });
+
   it('will return false if second argument is empty', () => {
     expect(getResult('pizza', '')).toBe(false);
   });
