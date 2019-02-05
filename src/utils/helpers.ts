@@ -1,8 +1,8 @@
 export const getResult = (first: string, second: string): string | boolean => {
   const num = Math.random();
 
-  // If there's no second argument we can't make a decision
-  if (!second) {
+  // If there's only one argument we can't make a decision
+  if (!first || !second) {
     return false;
   }
 
