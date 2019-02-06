@@ -4,24 +4,24 @@ import styled from 'styled-components';
 interface Props {
   // If `type` is provided, should only be the following values
   type?: 'submit' | 'button' | 'text';
-  name: string;
+  // For matching label with correct input (<label for="..">)
   id: string;
+  // Reference the correct input
+  name: string;
+  // Optional label name (defaults to id if not defined)
+  labelName?: string;
+  // Track what's in the input
   value: string;
+  // Function to track current input value in state
   onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  // Optional placeholder text
   placeholder?: string;
 }
 
-const Input = ({ type, name, id, value, onChange, placeholder }: Props) => (
+const Input = (props: Props) => (
   <InputWrapper>
-    <InputStyled
-      type={type}
-      name={name}
-      id={id}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-    />
-    <Label htmlFor={id}>{id}</Label>
+    <InputStyled {...props} />
+    <Label htmlFor={props.id}>{props.labelName || props.id}</Label>
   </InputWrapper>
 );
 

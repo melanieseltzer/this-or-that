@@ -42,14 +42,16 @@ class Form extends Component<Props> {
       <FormWrapper onSubmit={this.handleSubmit}>
         <Input
           name="firstInput"
-          id="This"
+          id="firstInput"
+          labelName="This"
           value={firstInput}
           onChange={this.handleChange}
           placeholder="Pizza"
         />
         <Input
           name="secondInput"
-          id="Or That"
+          id="secondInput"
+          labelName="Or That"
           value={secondInput}
           onChange={this.handleChange}
           placeholder="Hamburger"
