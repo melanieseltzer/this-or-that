@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import pikkr from 'pikkr';
 
 import Input from '../Input';
-
-import { getResult } from '../../utils/helpers';
 
 interface Props {
   updateResult: (result: string | boolean) => void;
@@ -28,7 +27,7 @@ class Form extends Component<Props> {
     const { updateResult } = this.props;
 
     // make a decision using each input value and get a result
-    const result = getResult(firstInput, secondInput);
+    const result = pikkr([firstInput, secondInput]);
 
     // update parent state with this result using the function
     // passed via props

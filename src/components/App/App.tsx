@@ -7,7 +7,7 @@ import LoadFonts from '../../fonts';
 import Form from '../Form';
 import Layout from '../Layout';
 
-import { config } from '../../utils/config';
+import { config } from '../../utils';
 
 class App extends Component {
   state = {
@@ -34,7 +34,7 @@ class App extends Component {
     });
   };
 
-  updateResult = (result: string | boolean) => {
+  updateResult = (result: string | number | boolean) => {
     // if result comes back false it means there was an error
     // so set error to true
     if (!result) {
