@@ -6,6 +6,7 @@ declare module 'fontfaceobserver';
 interface FloatingLabel {
   children: ReactNode;
 }
+
 interface Label extends InputHTMLAttributes<HTMLInputElement> {
   htmlFor: string;
   children: ReactNode;
