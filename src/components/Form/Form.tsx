@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import pikkr from 'pikkr';
 
+import FloatingLabel from '../FloatingLabel';
 import Input from '../Input';
+import Label from '../Label';
 
 interface Props {
   updateResult: (result: string | boolean) => void;
@@ -39,22 +41,28 @@ class Form extends Component<Props> {
 
     return (
       <FormWrapper onSubmit={this.handleSubmit}>
-        <Input
-          name="firstInput"
-          id="firstInput"
-          labelName="This"
-          value={firstInput}
-          onChange={this.handleChange}
-          placeholder="Pizza"
-        />
-        <Input
-          name="secondInput"
-          id="secondInput"
-          labelName="Or That"
-          value={secondInput}
-          onChange={this.handleChange}
-          placeholder="Hamburger"
-        />
+        <FloatingLabel>
+          <Input
+            id="firstInput"
+            name="firstInput"
+            value={firstInput}
+            onChange={this.handleChange}
+            placeholder="Pizza"
+          />
+          <Label htmlFor="firstInput">This</Label>
+        </FloatingLabel>
+
+        <FloatingLabel>
+          <Input
+            id="secondInput"
+            name="secondInput"
+            value={secondInput}
+            onChange={this.handleChange}
+            placeholder="Hamburger"
+          />
+          <Label htmlFor="secondInput">Or That</Label>
+        </FloatingLabel>
+
         <Button type="submit">Decide</Button>
       </FormWrapper>
     );
