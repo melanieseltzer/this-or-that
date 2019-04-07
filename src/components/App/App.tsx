@@ -55,7 +55,7 @@ class App extends Component {
     this.onOpenModal();
   };
 
-  public render() {
+  render() {
     const { error, open, result, confetti } = this.state;
 
     return (

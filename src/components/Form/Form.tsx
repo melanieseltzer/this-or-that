@@ -36,7 +36,7 @@ class Form extends Component<Props> {
     updateResult(result);
   };
 
-  public render() {
+  render() {
     const { firstInput, secondInput } = this.state;
 
     return (
