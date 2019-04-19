@@ -19,7 +19,7 @@ export default Layout;
 
 const GlobalStyle = createGlobalStyle`
   * { 
-    box-sizing: border-box 
+    box-sizing: border-box;
   }
 
   body {
@@ -31,14 +31,14 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const App = styled.div`
-  max-width: 768px;
+  max-width: 414px;
   margin: 0 auto;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 20px;
-  @media (min-width: 808px) {
+  @media (min-width: 415px) {
     margin: 0 auto;
   }
 `;

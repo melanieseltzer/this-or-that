@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import pikkr from 'pikkr';
-
-import FloatingLabel from '../FloatingLabel';
-import Input from '../Input';
-import Label from '../Label';
+import { FloatingLabel, Input, Label } from '@mels/react-components';
 
 interface Props {
   updateResult: (result: string | boolean) => void;
@@ -41,8 +38,9 @@ class Form extends Component<Props> {
 
     return (
       <FormWrapper onSubmit={this.handleSubmit}>
-        <FloatingLabel>
-          <Input
+        <FloatingLabelStyled color="#8e2de2" border={2}>
+          <InputStyled
+            background="#fff"
             id="firstInput"
             name="firstInput"
             value={firstInput}
@@ -50,10 +48,11 @@ class Form extends Component<Props> {
             placeholder="Pizza"
           />
           <Label htmlFor="firstInput">This</Label>
-        </FloatingLabel>
+        </FloatingLabelStyled>
 
-        <FloatingLabel>
-          <Input
+        <FloatingLabelStyled color="#8e2de2" border={2}>
+          <InputStyled
+            background="#fff"
             id="secondInput"
             name="secondInput"
             value={secondInput}
@@ -61,7 +60,7 @@ class Form extends Component<Props> {
             placeholder="Hamburger"
           />
           <Label htmlFor="secondInput">Or That</Label>
-        </FloatingLabel>
+        </FloatingLabelStyled>
 
         <Button type="submit">Decide</Button>
       </FormWrapper>
@@ -73,9 +72,11 @@ export default Form;
 
 const FormWrapper = styled.form`
   display: flex;
-  justify-content: space-between;
-  flex: 0 0 100%;
-  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  @media (min-width: 414px) {
+    flex-direction: row;
+  }
 `;
 
 const Button = styled.button`
@@ -83,7 +84,16 @@ const Button = styled.button`
   border: 0;
   cursor: pointer;
   color: #fff;
-  font-size: 1.5rem;
-  height: 5rem;
-  flex-basis: 100%;
+  font-size: 1rem;
+  padding: 0.5rem;
+`;
+
+const InputStyled = styled(Input)`
+  @media (max-width: 414px) {
+    width: 100%;
+  }
+`;
+
+const FloatingLabelStyled = styled(FloatingLabel)`
+  flex-grow: 1;
 `;
