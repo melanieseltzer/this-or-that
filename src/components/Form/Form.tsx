@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import pikkr from 'pikkr';
-import { FloatingLabel, Input, Label } from '@mels/react-components';
+import { Floating, Input, Label } from '@mels/react-components';
 
 interface Props {
   updateResult: (result: string | boolean) => void;
@@ -38,31 +38,41 @@ class Form extends Component<Props> {
 
     return (
       <FormWrapper onSubmit={this.handleSubmit}>
-        <FloatingLabelStyled color="#8e2de2" border={2}>
-          <InputStyled
+        <FloatingWrapper>
+          <InputWrapper
             background="#fff"
             id="firstInput"
             name="firstInput"
             value={firstInput}
             onChange={this.handleChange}
             placeholder="Pizza"
+            color="#8e2de2"
+            border={2}
+            borderBottom
           />
-          <Label htmlFor="firstInput">This</Label>
-        </FloatingLabelStyled>
+          <Label htmlFor="firstInput" color="#8e2de2">
+            This
+          </Label>
+        </FloatingWrapper>
 
-        <FloatingLabelStyled color="#8e2de2" border={2}>
-          <InputStyled
+        <FloatingWrapper>
+          <InputWrapper
             background="#fff"
             id="secondInput"
             name="secondInput"
             value={secondInput}
             onChange={this.handleChange}
             placeholder="Hamburger"
+            color="#8e2de2"
+            border={2}
+            borderBottom
           />
-          <Label htmlFor="secondInput">Or That</Label>
-        </FloatingLabelStyled>
+          <Label htmlFor="secondInput" color="#8e2de2">
+            Or That
+          </Label>
+        </FloatingWrapper>
 
-        <Button type="submit">Decide</Button>
+        <Button type="submit">Pick</Button>
       </FormWrapper>
     );
   }
@@ -74,9 +84,7 @@ const FormWrapper = styled.form`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  @media (min-width: 414px) {
-    flex-direction: row;
-  }
+  align-items: center;
 `;
 
 const Button = styled.button`
@@ -85,15 +93,24 @@ const Button = styled.button`
   cursor: pointer;
   color: #fff;
   font-size: 1rem;
+  margin-top: 1rem;
   padding: 0.5rem;
+  max-width: 200px;
+  width: 100%;
 `;
 
-const InputStyled = styled(Input)`
-  @media (max-width: 414px) {
-    width: 100%;
-  }
-`;
-
-const FloatingLabelStyled = styled(FloatingLabel)`
+const FloatingWrapper = styled(Floating)`
+  font-size: 14px;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
   flex-grow: 1;
+  width: 100%;
+`;
+
+const InputWrapper = styled(Input)`
+  :focus::placeholder,
+  :focus::-webkit-input-placeholder {
+    font-size: 14px;
+  }
+  width: 100%;
 `;
